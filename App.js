@@ -11,7 +11,7 @@ export default function App() {
       </View>
 
       <View> 
-        <Text style = {styles.title}> Maggie Chang </Text>
+        <Text style = {styles.title}> Maggie Change </Text>
       </View>
     
 

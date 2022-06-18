@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Image, Text, View, TextInput, Button, StyleSheet } from 'react-native';
+import {Image, Text, View, TextInput, FlatList, Button, ActivityIndicator, StyleSheet } from 'react-native';
 
 const Ghibli = () => {
     const [data,setData] = useState([]);
@@ -9,7 +9,7 @@ const Ghibli = () => {
 
     const getMovies = async () => {
         try {
-            const response = await fetch('https://ghibliapi.herokuapp.com/films/' + temporaryID);
+            const response = await fetch('https://ghibliapi.herokuapp.com/people/' + temporaryID);
             const json = await response.json();
             setData(json);
             for(let i = 0; i < json.length; i++){
@@ -31,7 +31,6 @@ const Ghibli = () => {
     return(
         <View style={styles.container}>
             <Text style={styles.websiteTitle}>Movie Finder</Text>
-            <br/> 
 
             <TextInput
                 style={styles.textBox}
@@ -39,27 +38,35 @@ const Ghibli = () => {
                 onChangeText={newText => setTemporaryID(newText)}
                 defaultValue={temporaryID}
             />
-            <br/>
             <Button
-                title="Search Bar"
-                style={styles.button}
+                title="Search"
                 onPress={() => {
                     setId(temporaryID)
                 }}
             />
+        
+            {isLoading ? <ActivityIndicator /> : (
+                <FlatList
+                    data={data}
+                    keyExtractor={({id}, index) => id}
+                    renderItem={({item}) => filmList(item)}
+        
+                />
+            )}
+        </View>
+    );
+}
 
-            <Text style ={styles.movieTitle}>{data.title}</Text> 
-            <Text style ={styles.movieTitle}>{data.original_title}</Text> 
-            <Image style ={styles.movieImage} source = {data.image}/> 
-            <Text style={styles.description}> 
-                Release Year: {data.release_date} 
-                <br/> 
-                Director: {data.director}
-                <br/> 
-                Movie Description: {data.description} 
-            
-            </Text>
-            
+const filmList = (item) => {
+    return (
+    <View style={styles.layout}>
+        <Text style={styles.movieTitle} >{item.title}</Text>
+        <Text style={styles.movieTitle} >{item.name}</Text>
+        <Text style={styles.movieTitle} >{item.gender}</Text>
+        <Text style={styles.movieTitle} >{item.age}</Text>
+        <Text style={styles.movieTitle} >{item.eye_color}</Text>
+        
+        
         </View>
     );
 }
@@ -71,6 +78,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'aliceblue',
         padding: 10, 
         margin:5, 
+        borderWidth:2,
         flexDirection: 'column'   
      },
     
@@ -86,8 +94,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 40,
         fontFamily: 'Verdana',
-        color: '#71A5DE',
-        letterSpacing: 2,
+        color: 'darkblue',
+        letterSpacing: 5,
         justifyContent: 'space-between',
     },
     movieTitle: {
@@ -95,11 +103,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         fontFamily: 'Verdana',
-        color: '#4464ad',
+        color: 'darkblue',
         letterSpacing: 5,
         justifyContent: 'space-between',
-        paddingBottom: 5,
-        paddingTop: 20      
+        paddingBottom: 20      
     },
   
     movieID: {
@@ -111,34 +118,23 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         paddingLeft: 5,
         paddingRight: 5,
-        color: '#83B0E1'
+        color: 'darkblue'
     },
   
     movieImage: {
         width: 700,
         height: 1000,
-        borderColor: '#AECBEB',
+        borderWidth: 5,
+        borderColor: 'darkblue',
         borderRadius:5,
-        borderWidth: 4,
         alignContent:'center'
     },
 
     textBox: {
         height: 30, 
         width: 300,
-        padding: 20,
-        borderColor: '#BFD7FF'
+        padding: 20
     },
-    description: {
-        alignItems: 'center',
-        backgroundColor: '#71A5DE',
-        padding: 10,
-        fontSize: 32,
-        letterSpacing: 2,
-        justifyContent: 'space-between',
-        padding: 50
-    },
-    
   
    
   });

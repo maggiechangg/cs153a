@@ -22,7 +22,7 @@ const GhibliTest = () => {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.websiteTitle}>Film Finder ID</Text>
+            <Text style={styles.websiteTitle}>Studio Ghibli Film List</Text>
            
               
               {isLoading ? <ActivityIndicator /> : (
@@ -51,30 +51,29 @@ const filmList = (item) => {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      backgroundColor: 'aliceblue',
-      padding: 10, 
-      margin:5, 
-      borderWidth:2,
-      flexDirection: 'column'    
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: 'aliceblue',
+        padding: 10, 
+        margin:5, 
+        flexDirection: 'column'   
      },
     
     layout:{
-       flexDirection:'column', 
-       padding:15, 
-       margin:5,
-       borderWidth:2,
-       justifyContent:'space-evenly',
+        flexDirection:'column', 
+        padding:15, 
+        margin:5,
+        borderWidth:2,
+        justifyContent:'space-evenly',
     },
     websiteTitle: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 40,
         fontFamily: 'Verdana',
-        color: 'darkblue',
-        letterSpacing: 5,
+        color: '#71A5DE',
+        letterSpacing: 2,
         justifyContent: 'space-between',
     },
     movieTitle: {
@@ -82,10 +81,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         fontFamily: 'Verdana',
-        color: 'darkblue',
+        color: '#4464ad',
         letterSpacing: 5,
         justifyContent: 'space-between',
-        paddingBottom: 20      
+        paddingBottom: 5,
+        paddingTop: 20      
     },
   
     movieID: {
@@ -97,17 +97,17 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         paddingLeft: 5,
         paddingRight: 5,
-        color: 'darkblue'
+        color: '#83B0E1'
     },
   
     movieImage: {
         width: 700,
         height: 1000,
-        borderWidth: 5,
-        borderColor: '#darkblue',
+        borderColor: '#AECBEB',
         borderRadius:5,
+        borderWidth: 4,
         alignContent:'center'
-    }
+    },
     
   });
 export default GhibliTest;

@@ -1,9 +1,9 @@
-import {Image, Text, View, StyleSheet} from 'react-native';
+import {Image, Text, View, StyleSheet, SafeAreaView} from 'react-native';
 // import picture from "./public/nyme.jpeg"
 
 const Bio = () => {
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           <View> 
             <Text style = {styles.developer}>  About the Developer: </Text>
           </View>
@@ -32,7 +32,7 @@ const Bio = () => {
             Through this app, anyone will be able to search up dishes and follow step-by-step cooking instrutions with a list of recipes and ingredients needed. 
             </Text>
           </View>
-        </View>
+        </SafeAreaView>
       );
     }
     

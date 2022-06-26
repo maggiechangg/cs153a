@@ -1,32 +1,32 @@
 import React from "react";
 import { Image, StyleSheet, Text, SafeAreaView, View, Button,} from "react-native";
-
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import NewFile from './NewFile';
+import ExistingFile from './ExistingFile';
 
 const Stack = createNativeStackNavigator();
 const image = {uri: 'https://i.pinimg.com/564x/3b/ea/44/3bea44c2684356f3bb1a30783d127a16.jpg'};
 
-const MyStack = () => {
+const Test = () => {
   
   return (
-    <NavigationContainer>
       <Stack.Navigator>
 
         <Stack.Screen
-          name="Test"
+          name="Recording App"
           component={HomeScreen}
-          //options={{ title: 'Welcome' }}
+          options={{ title: 'Welcome to the Recording App!' }}
         />
 
         <Stack.Screen 
              name="NewFile" 
              component={NewFile} />
 
+        <Stack.Screen 
+             name="ExistingFile" 
+             component={ExistingFile} />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 };
 
@@ -36,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style ={{flex: 1}}> 
       <View style={styles.container}>
 
-      <Text style={styles.text}>Welcome to Sapling!</Text>
+      <Text style={styles.text}> Track your musical progress below! </Text>
      
       <Image 
         source={image} 
@@ -49,7 +49,7 @@ const HomeScreen = ({ navigation }) => {
        <Button
           title="Go to Existing File"
           onPress={() =>
-            navigation.navigate('Profile')
+            navigation.navigate(ExistingFile)
           }
         />
       </View> 
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   text: {
     marginTop: 30,
     marginBottom: 50,
-    fontSize: 32,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 80,
@@ -101,8 +101,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 0,
     position: "absolute",
-    bottom: 150,
-    right: 200
+    bottom: 100,
+    right: 200,
+    backgroundColor: "#4E944F", 
   },
 
   button2: {
@@ -111,10 +112,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 0,
     position: "absolute",
-    bottom: 150,
-    right: 35,    
+    bottom: 100,
+    right: 35,
+    backgroundColor: "#4E944F", 
   },
 
 });
 
-export default MyStack;
+export default Test;

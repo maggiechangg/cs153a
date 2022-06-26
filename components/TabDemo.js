@@ -7,6 +7,7 @@ import Bio from './bio';
 import GhibliTest from './ghibliTest';
 import HomeScreen from './HomeScreen';
 import NewFile from './NewFile';
+import ExistingFile from './ExistingFile';
 
 
 
@@ -16,8 +17,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Sapling Home Page" component={HomeScreen} />
-        <Tab.Screen name="Files" component={GhibliTest} />
+        <Tab.Screen name="Sapling Home" component={HomeScreen} />
+        <Tab.Screen name="Files" component={ExistingFile} />
         <Tab.Screen name="Bio" component={Bio} />
         <Tab.Screen name="Create" component={NewFile} />
       </Tab.Navigator>

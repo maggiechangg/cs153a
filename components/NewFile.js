@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Text, TextInput, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
-import ExistingFile from './ExistingFile';
+import Async2 from './Async2';
 
 
-const NewFile = () => {
+const NewFile = ({ navigation }) => {
   const [fileName, setFileName] = useState("");
 
   return (
@@ -18,7 +18,7 @@ const NewFile = () => {
     
      
     <TouchableOpacity onPress={() =>
-            navigation.navigate(ExistingFile)}>
+            navigation.navigate(Async2)}>
       <Text style={styles.submitButton} > Submit </Text>
     </TouchableOpacity>
         
@@ -47,17 +47,14 @@ const styles = StyleSheet.create({
   submitButton: {
     textAlign: "center",
     borderWidth: 4,
-    marginLeft: 800,
-    marginRight: 800,
+    marginLeft: 600,
+    marginRight: 600,
     height: 35,
     borderWidth: 3,
     borderColor: "#4E944F",
     borderRadius: 20,
     backgroundColor: "#B4E197",
     fontSize: 24,
-    
-    
-    
   }
 
 });

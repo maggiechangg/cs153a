@@ -3,7 +3,8 @@ import { Image, StyleSheet, Text, SafeAreaView, View, Button,} from "react-nativ
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import NewFile from './NewFile';
-import ExistingFile from './ExistingFile';
+import Async1 from "./Async1";
+import Async2 from "./Async2";
 
 const Stack = createNativeStackNavigator();
 const image = {uri: 'https://i.pinimg.com/564x/3b/ea/44/3bea44c2684356f3bb1a30783d127a16.jpg'};
@@ -24,8 +25,8 @@ const Test = () => {
              component={NewFile} />
 
         <Stack.Screen 
-             name="ExistingFile" 
-             component={ExistingFile} />
+             name="Async2" 
+             component={Async2} />
       </Stack.Navigator>
   );
 };
@@ -49,7 +50,7 @@ const HomeScreen = ({ navigation }) => {
        <Button
           title="Go to Existing File"
           onPress={() =>
-            navigation.navigate(ExistingFile)
+            navigation.navigate(Async2)
           }
         />
       </View> 
@@ -57,7 +58,7 @@ const HomeScreen = ({ navigation }) => {
         <Button 
           title="Create New File"
           onPress={() =>
-            navigation.navigate(NewFile)
+            navigation.navigate(Async1)
           }
         />
       </View>
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     margin: 0,
     position: "absolute",
     bottom: 100,
-    right: 200,
+    right: 200, //200, 1200
     backgroundColor: "#4E944F", 
   },
 
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
     margin: 0,
     position: "absolute",
     bottom: 100,
-    right: 35,
+    right: 35, //35, 500
     backgroundColor: "#4E944F", 
   },
 

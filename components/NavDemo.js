@@ -18,13 +18,9 @@ const MyStack = () => {
           //options={{ title: 'Welcome' }}
         />
 
-
-
-
         <Stack.Screen 
              name="Profile" 
              component={ProfileScreen} />
-
 
 
       </Stack.Navigator>

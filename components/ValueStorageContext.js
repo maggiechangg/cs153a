@@ -9,7 +9,7 @@ const ValueContext = createContext(null)
 const ValueProvider = ({value, children}) => {
   const [currentValue,setCurrentValue] = useState(value);
 
-  useEffect(() => {getData();},[]) // init currentValue with AsyncStorage
+  useEffect(() => {getData();}, []) // init currentValue with AsyncStorage
 
   const getData = async () => 
     {
@@ -26,7 +26,18 @@ const ValueProvider = ({value, children}) => {
         console.dir(e)
       }
   }
-  
+
+  const getAll = async () => {
+    try{
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+      const jsonValue = result.map(req => JSON.parse(req)).forEach(console.log)
+    }
+    catch (e) {
+      console.dir(e)
+    }
+  }
+
 
   const storeData = async (value) => {
       try {
@@ -38,11 +49,10 @@ const ValueProvider = ({value, children}) => {
       }
   }
 
-
   return (
     <ValueContext.Provider
-        value={{currentValue,setCurrentValue:storeData}} >
-      {children}
+        value={{currentValue,setCurrentValue:storeData, getAll}} >
+        {children}
     </ValueContext.Provider>
    )
 }

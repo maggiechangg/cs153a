@@ -2,34 +2,8 @@ import React from "react";
 import { Image, StyleSheet, Text, SafeAreaView, View, Button,} from "react-native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import NewFile from './NewFile';
-import Async1 from "./Async1";
-import Async2 from "./Async2";
 
-const Stack = createNativeStackNavigator();
 const image = {uri: 'https://i.pinimg.com/564x/3b/ea/44/3bea44c2684356f3bb1a30783d127a16.jpg'};
-
-const Test = () => {
-  
-  return (
-      <Stack.Navigator>
-
-        <Stack.Screen
-          name="Recording App"
-          component={HomeScreen}
-          options={{ title: 'Welcome to the Recording App!' }}
-        />
-
-        <Stack.Screen 
-             name="NewFile" 
-             component={NewFile} />
-
-        <Stack.Screen 
-             name="Async2" 
-             component={Async2} />
-      </Stack.Navigator>
-  );
-};
 
 const HomeScreen = ({ navigation }) => {
   return(
@@ -43,26 +17,12 @@ const HomeScreen = ({ navigation }) => {
         source={image} 
         style={styles.image} 
         resizeMode="contain"/>
+      
+      <Text style={styles.quote}> 
+        "Progress is not achieved by luck or accident, but by working on yourself daily."{'\n'} -Epictetus
+        </Text>
 
       </View> 
-
-      <View style= {styles.button1}>
-       <Button
-          title="Go to Existing File"
-          onPress={() =>
-            navigation.navigate(Async2)
-          }
-        />
-      </View> 
-      <View style={styles.button2}> 
-        <Button 
-          title="Create New File"
-          onPress={() =>
-            navigation.navigate(Async1)
-          }
-        />
-      </View>
-
     </SafeAreaView>
   );
   };
@@ -85,13 +45,13 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    marginTop: 30,
+    marginTop: 15,
     marginBottom: 50,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
     lineHeight: 80,
-    backgroundColor: "#4E944F",
+    backgroundColor: "#6D8B74",
     color: "white",
     justifyContent: "flex-start",
   },
@@ -118,6 +78,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#4E944F", 
   },
 
+  quote: {
+    margin: "auto",
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+    lineHeight: 20,
+    backgroundColor: "#6D8B74",
+    color: "white",
+  },
+
 });
 
-export default Test;
+export default HomeScreen;

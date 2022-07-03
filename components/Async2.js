@@ -3,7 +3,6 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button, SafeAreaVi
 import {useValue} from './ValueContext';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Async3 from './Async3';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,14 +13,7 @@ const Async2 = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
         <Text style={{fontSize: 30}}> File Name: {currentValue.fileName} </Text> 
-        {/* <TouchableOpacity onPress={() =>
-            navigation.navigate(currentValue.fileName)}>
-            {currentValue.fileName}
-        </TouchableOpacity> */}
-        
     </SafeAreaView>
-
-         
 
     )
 }

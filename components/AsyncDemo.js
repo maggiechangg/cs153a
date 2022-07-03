@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Async1Screen from './Async1';
 import Async2Screen from './Async2';
-import Async3Screen from './Async3';
+import AudioRecordingScreen from './AudioRecording';
 import HomeScreen from './HomeScreen';
 import Bio from './bio';
 
@@ -16,8 +16,9 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Sapling Home" component={HomeScreen} />
-        <Tab.Screen name="Async1" component={Async1Screen} />
-        <Tab.Screen name="Async2" component={Async2Screen} />
+        <Tab.Screen name="Create" component={Async1Screen} />
+        <Tab.Screen name="Files" component={Async2Screen} />
+        <Tab.Screen name="Record" component={AudioRecordingScreen} />
         <Tab.Screen name="Bio" component={Bio} />
       </Tab.Navigator>
     </NavigationContainer>

@@ -1,9 +1,11 @@
 import {Image, Text, View, StyleSheet, SafeAreaView} from 'react-native';
+import { ScrollView } from 'react-native-web';
 // import picture from "./public/nyme.jpeg"
 
 const Bio = () => {
     return (
         <SafeAreaView style={styles.container}>
+          <ScrollView> 
           <View> 
             <Text style = {styles.developer}>  About the Developer: </Text>
           </View>
@@ -32,6 +34,7 @@ const Bio = () => {
             Through this app, anyone will be able to search up dishes and follow step-by-step cooking instrutions with a list of recipes and ingredients needed. 
             </Text>
           </View>
+          </ScrollView>
         </SafeAreaView>
       );
     }
@@ -114,6 +117,7 @@ const Bio = () => {
         borderWidth: 5,
         borderColor: '#bca86e',
         borderRadius:5,
+        margin: 'auto',
       }
     });
 export default Bio;

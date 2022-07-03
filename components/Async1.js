@@ -1,43 +1,66 @@
 import React,{useState} from 'react';
-import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button, SafeAreaView} from 'react-native';
-import {useValue} from './ValueContext';
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button, SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native';
+import {useValue} from './ValueStorageContext';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Async2 from './Async2';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Stack = createNativeStackNavigator();
 
-
 const Async1 = ({navigation}) => {
     const [text,setText] = useState("");
-    const {currentValue,setCurrentValue} = useValue();
+    // const {currentValue,setCurrentValue} = useValue();
+
+    const storeData = async (value) => {
+        try {
+          console.log('in storeData');
+        //   setCurrentValue(value);
+          await AsyncStorage.setItem('@async', JSON.stringify(value));
+        } catch (e) {
+          console.dir(e)
+        }
+    }
+  
+    const getAll = async () => {
+        try{
+            const keys = await AsyncStorage.getAllKeys();
+            const result = await AsyncStorage.multiGet(keys);
+            console.log(result)
+            return result.map(req => JSON.parse(req));
+        }
+        catch (e) {
+          console.dir(e)
+        }
+      }    
+
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}> Create New File Below </Text>
-            <View style={{flexDirection: 'row'}}>
+            <Text 
+                style={styles.title}> Create New File Below 
+            </Text>
+
+            <View 
+                style={{alignContent: 'center'}}>
+                <Text 
+                    style={{textAlign: 'center', marginTop: 15,}}> Type File Name Below: 
+                </Text>
+
                 <TextInput
                     style={styles.inputContainer}
-                    placeholder="Type File Name Here"
-                    onChangeText={(text) => setText(text)}
-                />
-            </View> 
-            
-            {/* <View style={styles.submitButton}>
-                <Button 
+                    onChangeText={(text) => setText(text)}/>
+                
+                <TouchableOpacity 
+                    onPress={() => {storeData({fileName:text}), getAll()}} 
+                    style={styles.submitButton}>
+                        <Text> Submit </Text>
+                </TouchableOpacity>
 
-                title="Save File Name"
-                onPress = {() => setCurrentValue({fileName:text})}
-                /> 
-            </View> */}
-            
-
-            <TouchableOpacity 
-                 onPress = {() => setCurrentValue({fileName:text})}>
-              
-                <Text style={styles.submitButton} > Submit </Text>
-            </TouchableOpacity>
-
-
+                <Text 
+                    style={{fontSize: 30, margin: 'auto',}}> 
+                    {/* File Name: {currentValue.fileName} */}
+                </Text> 
+                </View> 
         </SafeAreaView>
     )
 }
@@ -54,38 +77,30 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         lineHeight: 80,
-        backgroundColor: "#4E944F",
+        backgroundColor: "#6D8B74",
         color: "white",
         justifyContent: "flex-start",
     },
   
     inputContainer:{
-      marginTop: 50,
-      marginBottom: 40,
-      marginLeft: 600,
-      marginRight: 500,
-      height: 30,
-      textAlign: "center",
-      borderWidth: 3,
-      borderColor: "#4E944F",
-      borderRadius: 20, 
+        fontSize: 30,
+        textAlign: "center",
+        textAlign: "center",
+        borderWidth: 3,
+        borderColor: "#6D8B74",
+        borderRadius: 20, 
+        margin: "auto",
     },
   
     submitButton: {
-        width: 150,
         textAlign: "center",
-        height: "auto",
-        marginLeft: 605,
-        textAlign: "center",
-        borderWidth: 4,
-        marginLeft: 600,
-        marginRight: 600,
-        height: 35,
-        borderWidth: 3,
-        borderColor: "#4E944F",
+        borderColor: "#A1B57D",
         borderRadius: 20,
-        backgroundColor: "#B4E197",
+        backgroundColor: "#A1B57D",
         fontSize: 24,
+        marginTop: 20,
+        margin: 'auto',
+        width: 200,
     }
   
   });
